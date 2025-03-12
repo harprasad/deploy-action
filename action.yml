@@ -10,7 +10,7 @@ runs:
     - uses: actions/checkout@v3
     - name: Install Wasp
       shell: bash
-      run: curl -sSL https://get.wasp-lang.dev/installer.sh | sh -s -- -v 0.14.2
+      run: curl -sSL https://get.wasp-lang.dev/installer.sh | sh -s -- -v 0.16.0
     - name: Install Flyctl
       uses: superfly/flyctl-actions/setup-flyctl@master
     - name: Deploy
