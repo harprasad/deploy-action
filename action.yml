@@ -4,17 +4,32 @@ inputs:
   fly-token: 
     description: 'Fly.io API token'
     required: true
+
 runs:
   using: "composite"
   steps:
     - uses: actions/checkout@v3
+
+    - name: Set up Node.js 22.12.0
+      uses: actions/setup-node@v4
+      with:
+        node-version: '22.12.0'
+        check-latest: true
+
+    - name: Verify Node version
+      shell: bash
+      run: node -v
+
     - name: Install Wasp
       shell: bash
       run: curl -sSL https://get.wasp.sh/installer.sh | sh -s -- -v 0.18.0
+
     - name: Install Flyctl
       uses: superfly/flyctl-actions/setup-flyctl@master
+
     - name: Deploy
-      run: wasp deploy fly deploy
       shell: bash
+      run: wasp deploy fly deploy
       env:
         FLY_API_TOKEN: ${{ inputs.fly-token }}
+
